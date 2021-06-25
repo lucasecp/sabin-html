@@ -435,20 +435,18 @@ p.text-orange{
     width: 60px !important;
     
 }
-/**/
+
 .dropdown-menu p{
     font-weight: 500 !important
     }
+
     .dropdown .card-body p{
     font-weight: 400 !important
     }
-    .dropdown-menu .dropdown-menu p + p {
-     margin-top:20px !important
-}
 
 
 
-/**/
+
 
 .dropdown-menu .menu-item .card-dinamico:hover .img-fluid{
     filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(359deg) brightness(190%) contrast(101%);
