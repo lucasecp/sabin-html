@@ -209,23 +209,3 @@ export default class Carrossel {
     }
 
 }
-
-const options = {
-    mediaQuery:{
-        1200:{
-            perPage: 4
-        },
-        920:{
-           perPage: 3
-        },
-        768:{
-            perPage: 2,
-            marginLeft: 0
-        },
-        200:{
-            perPage: 1,
-            marginLeft: 10
-        }
-    }
-}
-new Carrossel('.sabin-mais-buscados',options).init();

@@ -11,9 +11,11 @@
     background-color: #4B4E55;
     padding: 44px 23px;
     border-radius: 4px;
+    transition: .3s all;
 }
 .card-sabin-acesso-rapido:hover{
     background-color: #2C2C2C;
+    transition: .3s all;
 }
 .card-sabin-acesso-rapido > div{
    display: flex;
@@ -21,7 +23,8 @@
 }
 .card-sabin-acesso-rapido img{
     margin-right: 16px;
-
+    height: 40px;
+    width: 48.27px;
 }
 .card-sabin-acesso-rapido h2{
     color: #fff;

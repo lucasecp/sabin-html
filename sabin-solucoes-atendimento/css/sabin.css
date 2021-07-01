@@ -1,5 +1,4 @@
 /* SABIN ATENDIMENTO */
-
 .sabin-atendimento {
     padding-top: 48px;
     padding-bottom: 63px;
@@ -67,11 +66,12 @@
     margin-bottom: 13px;
     font-size: 20px;
  }
-.sabin-atendimento .card-sabin-telefone p:last-child {
+.sabin-atendimento .card-sabin-telefone a {
    font-weight: 700;
    font-size: 26px;
    color:#fff;
    margin-bottom: 0 !important;
+   text-decoration: none;
 }
 .card-sabin-content img{
      margin-bottom: 15px;
