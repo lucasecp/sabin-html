@@ -1,0 +1,132 @@
+
+
+/* SABIN MAIS CARROSSEL PRINCIPAL */
+body{
+    font-family: 'Roboto';
+}
+.carrossel-principal{
+    position: relative;
+    overflow: hidden;
+}
+.carrossel-principal ul{
+    padding: 0;
+}
+.carrossel-principal [data-carrossel="container"]{
+    display: flex;
+}
+.carrossel-principal [data-carrossel="container"] li, .carrossel-principal [data-carrossel="container"] [data-carrossel='item']{
+    display: flex;
+    flex: 1 0 100%;
+    justify-content: center;
+    align-items: center;
+}
+.carrossel-principal [data-carrossel="container"] .carrossel-principal-content{
+    max-width: 373px;
+    margin-right: 90px;
+}
+.carrossel-principal h1, .carrossel-principal .btn{
+    text-transform: uppercase;
+}
+.carrossel-principal .btn{
+    font-weight: 400;
+    font-size: 14px;
+    color: #E42722;
+    line-height: 24px;
+    border: solid #E42722 1px;
+    padding: 10px 15px;
+   
+}
+.carrossel-principal .btn:hover{
+    background: #BB140F;
+    color: #ffff
+   
+}
+.carrossel-principal p{
+    font-weight: 400;
+    font-size: 16px ;
+    line-height: 22px;
+    color: #666666
+}
+.carrossel-principal h1{
+    font-weight: 900;
+    font-size: 40px;
+    color: #5A5D67;
+    line-height: 46.88px;
+    letter-spacing: -.5px;
+    margin: 0px 0 40px 0
+}
+.carrossel-principal .img-principal {
+    background-position: center center !important;
+    background-size: 100% !important;
+    height: 500px;
+    width: 100%;
+    display: block;
+    background-repeat: no-repeat;
+    max-width: 428px;
+    max-height: 600px;
+}
+.redes-sociais-sabin{
+    position: absolute;
+    top: 60px;
+    right: 150px;
+}
+.redes-sociais-sabin a{
+    background-position: center !important;
+    background-size: 100% !important;
+    height: 25px;
+    width: 25px;
+    display: block;
+    background-repeat: no-repeat;
+    margin-bottom: 15px;
+}
+.carrossel-principal [data-carrossel="nav"]{
+    display: flex;
+    align-self: flex-end;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: center;
+   bottom: 130px;
+   left: 40%;
+}
+.carrossel-principal [data-carrossel="nav"] a{
+    height: 5px ;
+    width: 5px;
+    border-radius: 50%;
+    background-color: #FF4445;
+    display: block;
+    margin: 10px 10px 0 10px ;
+    transition: .3s;
+    cursor: pointer;
+    
+}
+.carrossel-principal [data-carrossel="nav"] a.active-link{
+    background: #353B46;
+    height: 10px ;
+    width: 10px
+}
+@media(max-width:767px){
+    .carrossel-principal [data-carrossel="container"] li, .carrossel-principal [data-carrossel="container"] [data-carrossel='item']{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-right: 10px;
+    }
+    .redes-sociais-sabin{
+      display: none
+    }
+    .carrossel-principal h1{
+       font-size: 30px;
+       line-height: 35px;
+       margin: 0px 0 10px 0
+    }
+    .carrossel-principal .img-principal {
+        height: 500px;
+        max-width: 100%;
+        max-height: 448px;
+        min-width: 250px
+    }
+
+}
+
+
+
