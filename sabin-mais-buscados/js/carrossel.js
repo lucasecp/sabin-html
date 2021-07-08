@@ -17,30 +17,36 @@ export default class Carrossel {
         active ? this.container.css('transition' ,'transform .5s') : this.container.css('transition' ,'none')
         
     }
+    //passar para o próximo slide 
     handleNextSlide(){
         this.index += 1;
       if(this.index > this.groupSlide.length - 1)  return this.handleChangeAcive(this.groupSlide.length - 1);
       this.handleChangeAcive(this.index)
     }
+    // passar para o slide anterior
     handlePrevSlide(){
         if(this.index <= 0) return this.handleChangeAcive(0)
         this.index -= 1;
         this.handleChangeAcive(this.index)
     }
+    // definir o index de acordo com o link clicado
     handleLink(event){
         event.preventDefault()
-        this.index = Number(event.target.getAttribute(`data-link-${this.carrosselName.replace('.','')}`));
+        this.index = Number(event.target.getAttribute(`data-carrossel-link${this.carrosselName.replace('.','')}`));
         this.handleChangeAcive(this.index)
         
     }
+    // atualizar posição a cada movimento do mouse ou dedo
     updatePosition(clientX){
        this.dist.moviment = (this.dist.start - clientX )* 1.2;
        return this.dist.final - this.dist.moviment
     }
+    // movimentando o slide a partir do cálculo da posição
     moveSlide(distX){
        this.dist.movePosition = distX;
        this.container.css('transform', `translate3d(${distX}px,0,0)`);
     } 
+    // pegando a posição do mouse ao clicar 
     MouseDown(event){
         if(event.type === 'mousedown'){
             event.preventDefault()
@@ -51,7 +57,8 @@ export default class Carrossel {
         this.container.on('touchmove',this.MouseMove);
         }
      
-    }
+    } 
+    //movendo o slide
     MouseMove(event){
         this.transition(false)
         const eventPosition = event.type === 'mousemove'? event.clientX : event.changedTouches[0].clientX
@@ -59,6 +66,7 @@ export default class Carrossel {
         
        this.moveSlide(finalPosition)
     }
+    // peagando a posição ao soltar o mouse e removendo o evento de mover 
     MouseUp(event){
         const moveType = event.type === 'mouseup' ? 'mousemove': 'touchmove'
         this.dist.final = this.dist.movePosition
@@ -66,6 +74,7 @@ export default class Carrossel {
         this.transition(true)
         this.changeSlideOnUp()
     }
+    // mudando o slide a partir de um determinado movimento
     changeSlideOnUp(){
       
         if(this.dist.moviment > 120 ){
@@ -75,6 +84,7 @@ export default class Carrossel {
         }
         else this.handleChangeAcive(this.index)
     }
+    // alterando o index e classes do slide ativo
     handleChangeAcive(index){
         this.index = index
         this.links.forEach(function (el) {el.removeClass('active-link')});
@@ -89,27 +99,30 @@ export default class Carrossel {
         this.dist.final = activeSlide.position;
         
     }
+    // criando a navegação de acordo com a quantidade de items no slide 
     createNavigation(){
         this.links = []
-        const hasNav = $(`${this.carrosselName} > nav`)
+        const hasNav = $(`${this.carrosselName} [data-carrossel='nav']`)
         const nav = $('<nav></nav>')
+        nav.attr('data-carrossel','nav')
         hasNav.each(function(e){
            $(this).remove()
        } )
         this.container.after(nav)
         
         for(let i = 0; i < Math.ceil(this.item.length /this.perPage); i++){
-            const a =$(`<a  data-link-${this.carrosselName.replace('.','')}=${i} class='link-${this.carrosselName.replace('.','')}'></a>`);
+            const a =$(`<a  data-carrossel-link${this.carrosselName.replace('.','')}=${i} class='link-${this.carrosselName.replace('.','')}'></a>`);
             nav.append(a);
             this.links.push(a)
         }
         this.links.forEach(el => el.click(this.handleLink));
        
     }
+    // criando o grupo de items de acordo com a quantidade de items por página passado
     createGroupSlide(){
         let j = 0
         const items = this.item
-        const children =$(`${this.carrosselName}  [data-carrossel="container"] > ul`)
+        const children =$(`${this.carrosselName}  [data-carrossel="container"] > ul[data-carrossel='item']`)
         if(children.length){
             
             children.each(function (){
@@ -120,7 +133,7 @@ export default class Carrossel {
  
         for(let i = 1; i <= Math.ceil(this.item.length /this.perPage); i++){
             const ul = $('<ul></ul>');
-            
+            ul.attr('data-carrossel','item')
             //No segundo laço , passe pro próximo grupo do item
             if(i >= 2) { 
                 j = this.perPage * (i - 1)
@@ -135,6 +148,7 @@ export default class Carrossel {
         this.container.append(ul)
     }
     }
+    // definindo cada item a sua posição em relação a direita 
     slideConfig(){
         this.groupSlide = Array.from(this.container.children()).map((el)=>{
             return  { el, position: this.positionSlide(el) } 
@@ -144,7 +158,7 @@ export default class Carrossel {
     positionSlide(slide){
         const wind = $(window)
        const margin = this.marginLeft   || (wind.outerWidth() - $(slide).outerWidth()) /2;
-       return -($(slide).offset().left - margin )
+       return -($(slide).offset().left - Number(margin ))
     }
     events(){
         this.btnNext.click(this.handleNextSlide);
@@ -209,6 +223,8 @@ export default class Carrossel {
     }
 
 }
+
+
 
 const options = {
     mediaQuery:{
